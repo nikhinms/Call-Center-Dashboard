@@ -49,3 +49,50 @@ And then dataset was cleaned and transformed, it was ready to the data modeled.
 The measure table and call centre trends tables as show below:
 
 <img width="855" height="473" alt="227766088-7fe8f2b3-b4b3-4cfd-a925-0895874ea956" src="https://github.com/user-attachments/assets/13f64bb1-c79a-4f14-b66a-dc86a124c836" />
+
+
+## Data Analysis (DAX
+
+Measures used in all visualization are:
+
+- Average of seed of answerd = AVERAGE('call centre trends'[Speed of answer in seconds])
+
+- Average of statisfaction = AVERAGE('call centre trends'[Satisfaction rating])
+
+- Count satisfation rating = COUNT('call centre trends'[Satisfaction rating])
+
+- Overall Customer Satisfation = DIVIDE([Possitive satisfation rating],[Count satisfation rating],0)
+
+- Possitive satisfation rating = CALCULATE(COUNT('call centre trends'[Satisfaction rating]),FILTER('call centre trends','call centre trends'[Satisfaction rating] IN {4,5}))
+
+- resolved calls = COUNTX(FILTER('call centre trends','call centre trends'[Resolved] = "Yes"), 'call centre trends'[Resolved])
+
+- Unresolved calls = COUNTX(FILTER('call centre trends','call centre trends'[Resolved] = "No"), 'call centre trends'[Resolved])
+
+- total calls = CALCULATE('Table'[total calls answered] + 'Table'[total calls unanswred])
+
+- total calls answered = COUNTX(FILTER('call centre trends','call centre trends'[Answered (Y/N)] = "Yes"),'call centre trends'[Answered (Y/N)])
+
+- total calls unanswred =COUNTX(FILTER('call centre trends','call centre trends'[Answered (Y/N)] = "No"), 'call centre trends'[Answered (Y/N)])
+
+## Data Visualization (Dashboard) :
+
+Data visualization for the data analysis (DAX) was done in Microsoft Power BI Desktop:
+
+Shows visualizations from Call Center Trends :
+
+<img width="1294" height="729" alt="Screenshot 2025-10-02 155215" src="https://github.com/user-attachments/assets/d1439628-ee6c-4d59-832c-a98da22764bb" />
+
+## Insights :
+
+As shown by Data Visualization, It can be deduced that:
+
+- Most of the satisfaction ratings from each call are 3 and 4.
+- The average satisfaction rating has decreased over the span of three months. January brought the highest satisfaction rating and march the lowest.
+- The percentage of issue resolved in January was the highest, with a dip in February. It increased again in march.
+- The majority of calls come in the morning.
+- The average speed of answer by Joe is the highest.
+- The call resolution rate of Jim is the highest, even though the average speed of his answers is lower compared to those of Joe, Martha and Dan. The call answered by - him - are also higher than the average number of calls answered.
+- Becky's speed of answer is the lowest among all, and her rate of calls resolved is higher. She is in the 5th position in the call resolution rate.
+- Martha has the highest speed of answered in the sec
+
